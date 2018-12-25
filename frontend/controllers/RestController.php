@@ -9,13 +9,18 @@
 namespace frontend\controllers;
 
 
+
+use common\models\DataActiveRecord;
+use common\models\Algorithm;
+use common\models\Data;
+
+use Yii;
 use yii\filters\auth\CompositeAuth;
-use yii\filters\auth\HttpBasicAuth;
-use yii\filters\auth\HttpBearerAuth;
+
 use yii\filters\auth\QueryParamAuth;
-use yii\rest\ActiveController;
+
 use yii\web\Controller;
-use yii\web\Response;
+
 
 class RestController extends Controller
 {
@@ -45,9 +50,27 @@ class RestController extends Controller
         ];
     }
 
-    public function actionIndex(){
+    public function actionIndex($n,$str){
+        $modelUser=Yii::$app->user->identity;
 
-        
-        return "true";
+
+        $modelData=new Data($n,$str);
+        $modelAlgorithm=new Algorithm;
+
+        if($modelData->validate()){
+            $result = $modelData->processing($modelAlgorithm);
+            $modelDataRecord=new DataActiveRecord;
+            $modelDataRecord->setAll($n,$str,$result,$modelUser->id);
+            if($modelDataRecord->validate()){
+                $modelDataRecord->save();
+            }
+            return $result;
+        }else{
+
+            return "Input Error";
+        }
+
+
+//        return "true ";
     }
 }

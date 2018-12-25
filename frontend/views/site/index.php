@@ -30,15 +30,15 @@ $(document).ready(function(){
             url  :  "/rest/index",
             data:{
                "access-token":"hhIAkh3x_p7Lb1LYLnvkTeFiIV61iSTY",
-               "n":"5",
-               "str":"5, 5, 1, 7, 2, 3, 5"
+               "n":"4",
+               "str":"5, 5, 1, 7, 2, 3,1"
                
             },
             cache: false,
 
             success  : function(response) {
 
-                var obj = $.parseJSON(response);
+               // var obj = $.parseJSON(response);
                 console.log(response);
                
 
