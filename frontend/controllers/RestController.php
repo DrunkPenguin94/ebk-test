@@ -9,23 +9,29 @@
 namespace frontend\controllers;
 
 
+use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\HttpBearerAuth;
+use yii\filters\auth\QueryParamAuth;
 use yii\rest\ActiveController;
 use yii\web\Controller;
+use yii\web\Response;
 
-class RestController extends ActiveController
+class RestController extends Controller
 {
 
-    public function init(){
-        parent::init();
-        \Yii::$app->user->enableSession = false;
-    }
+
     public function behaviors()
     {
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
-            'class' => HttpBasicAuth::className(),
+            'class' => CompositeAuth::className(),
+            'authMethods' => [
+
+                QueryParamAuth::className(),
+            ],
         ];
+
         return $behaviors;
     }
 
@@ -37,5 +43,11 @@ class RestController extends ActiveController
             ],
 
         ];
+    }
+
+    public function actionIndex(){
+
+        
+        return "true";
     }
 }
