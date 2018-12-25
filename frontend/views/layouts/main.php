@@ -36,23 +36,9 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/index']],
-        ['label' => 'About', 'url' => ['/about']],
-        ['label' => 'Contact', 'url' => ['contact']],
+
     ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
@@ -73,7 +59,7 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right"></p>
     </div>
 </footer>
 

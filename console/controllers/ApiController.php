@@ -25,7 +25,7 @@ class ApiController extends Controller
 
         ];
     }
-
+    //консольная команда для вычисления алгоритмом
     public function actionIndex($n,$str){
 
 
@@ -42,6 +42,7 @@ class ApiController extends Controller
         }
     }
 
+    //команда для создания нового юзера по логину паролю, выдает токен доступа
     public function actionNewuser($login,$password){
         $model = new SignupForm();
         $model->username=$login;

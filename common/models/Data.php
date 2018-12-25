@@ -34,7 +34,7 @@ class Data extends Model
         $this->str=$str;
     }
 
-
+    //преобразователь строки в массив
     public function strToArr(){
         if($this->validate()){
             return  explode(",",str_replace(" ","",$this->str));
@@ -42,6 +42,7 @@ class Data extends Model
         return false;
     }
 
+    //получение результа по входному алгоритму
     public function processing(AlgorithmInterface $algorithm){
         if($this->validate()) {
             return $algorithm->run($this->n, $this->strToArr());

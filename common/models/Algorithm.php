@@ -11,7 +11,7 @@ namespace common\models;
 
 class Algorithm implements AlgorithmInterface
 {
-
+    //запуск  поиска индекса перед которым возможно поставить разделитель
     public  function run($n, $arr)
     {
         $max_i=count($arr);
@@ -24,7 +24,7 @@ class Algorithm implements AlgorithmInterface
 
 
         do{
-//            echo $left_i." ".$right_i." ".$left_n." ".$right_n."\n";
+
             if($left_n<=$right_n){
 
                 if($arr[$left_i]==$n){

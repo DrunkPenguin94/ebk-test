@@ -8,8 +8,11 @@ $this->title = 'My Yii Application';
 
     <div class="jumbotron">
         <h1>REST!</h1>
+        <div style="padding-bottom: 25px;">Токен:<input type="text" name="token"></div>
+        <div style="padding-bottom: 25px;">Число:<input type="text" name="n"></div>
+        <div style="padding-bottom: 25px;">Строка чисел (через запятую):<input type="text" name="str"></div>
 
-
+        <div style="padding-bottom: 25px;" >Результат:<input disabled type="text" name="result"></div>
 
         <p><a class="btn btn-lg btn-success" >start</a></p>
     </div>
@@ -26,18 +29,19 @@ console.log("start");
 $(document).ready(function(){
     $("a.btn").click(function(){
         $.ajax({
+        //hhIAkh3x_p7Lb1LYLnvkTeFiIV61iSTY
             method: 'get',
             url  :  "/rest/index",
             data:{
-               "access-token":"hhIAkh3x_p7Lb1LYLnvkTeFiIV61iSTY",
-               "n":"4",
-               "str":"5, 5, 1, 7, 2, 3,1"
+               "access-token":$("input[name='token']").val(),
+               "n":$("input[name='n']").val(),
+               "str":$("input[name='str']").val(),
                
             },
             cache: false,
 
             success  : function(response) {
-
+                $("input[name='result']").val(response);
                // var obj = $.parseJSON(response);
                 console.log(response);
                
@@ -46,12 +50,13 @@ $(document).ready(function(){
 
             error : function(response) {
                 console.log(response);
+                  $("input[name='result']").val("Ошибка,неверный токен");
             }
 
         });
     });
 });
 JS;
-//маркер конца строки, обязательно сразу, без пробелов и табуляции
+
 $this->registerJs($script, yii\web\View::POS_READY);
 ?>
