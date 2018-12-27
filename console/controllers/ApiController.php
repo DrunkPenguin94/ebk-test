@@ -42,6 +42,36 @@ class ApiController extends Controller
         }
     }
 
+//    //консольная команда для вычисления алгоритмом
+//    public function actionTest(){
+//
+//
+//        for($i=0;$i<10;$i++){
+//            $n=rand(1,3);
+//            $rand=rand(2,10);
+//            $str="";
+//            for($j=0;$j<$rand;$j++){
+//               $str.=rand(1,3).",";
+//            }
+//            $str.=rand(1,3);
+//            echo $n."\n";
+//            echo $str."\n";
+//            $modelData=new Data($n,$str);
+//            $modelAlgorithm=new Algorithm;
+//
+//            if($modelData->validate()){
+//                $result = $modelData->processing($modelAlgorithm);
+//                echo $result;
+//
+//            }else{
+//                echo "Input Error";
+//
+//            }
+//            echo "\n-----\n";
+//        }
+//
+//    }
+
     //команда для создания нового юзера по логину паролю, выдает токен доступа
     public function actionNewuser($login,$password){
         $model = new SignupForm();
